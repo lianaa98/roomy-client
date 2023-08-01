@@ -1,9 +1,9 @@
 import { FC } from 'react';
 
-interface pageProps {}
+interface dashboardProps {}
 
-const Page: FC<pageProps> = () => {
+const dashboard: FC<dashboardProps> = () => {
   return <div>DASHBOARD</div>;
 }
 
-export default Page;
+export default dashboard;
