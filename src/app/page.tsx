@@ -1,8 +1,13 @@
-import Link from "next/link";
+"use client";
 
-export default async function Home() {
+import Link from "next/link";
+import { useState } from "react";
+import { CookiesProvider } from 'react-cookie';
+
+export default function Home() {
+
   return (
-    <>
+    <CookiesProvider>
       <header className="font-sans text-5xl flex justify-center">Roomy</header>
       <main
         className="grid content-center
@@ -33,6 +38,6 @@ export default async function Home() {
         </Link>
       </main>
       <footer></footer>
-    </>
+    </CookiesProvider>
   );
 }
