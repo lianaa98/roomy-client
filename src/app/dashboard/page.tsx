@@ -1,9 +1,15 @@
 import { FC } from 'react';
 
+import TopNav from './components/TopNav';
+
 interface dashboardProps {}
 
 const dashboard: FC<dashboardProps> = () => {
-  return <div>DASHBOARD</div>;
+  return (
+    <>
+  <TopNav />
+    </>
+  )
 }
 
 export default dashboard;
