@@ -4,18 +4,24 @@ import React, { FC, useState } from "react";
 
 import Calendar from "./Calendar";
 
+import "../style/mainSection.css"
+
 interface MainSectionProps {}
 
 const MainSection: FC<MainSectionProps> = ({}) => {
 
   const [showCalendar, setShowCalendar] = useState(true);
+  const [insideSpace, setInsideSpace] = useState(false);
 
   const handleEnterSpace = () => {
     setShowCalendar(false);
+    setInsideSpace(true);
   };
 
   return (
-    <div className="sm:ml-64">Hello</div>
+    <div id="main-container">
+       { !insideSpace ? <button>Enter Space</button> : null }
+    </div>
   );
 };
 
