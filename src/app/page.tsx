@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
 import { CookiesProvider } from 'react-cookie';
 
 export default function Home() {
