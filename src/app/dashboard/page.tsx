@@ -10,7 +10,7 @@ const dashboard: FC<dashboardProps> = () => {
   return (
     <div className="h-screen">
       <TopNav />
-      <div className="md:grid md:grid-cols-4">
+      <div className="md:grid md:grid-cols-4 h-screen">
         <SpaceMenu />
         <MainSection />
       </div>

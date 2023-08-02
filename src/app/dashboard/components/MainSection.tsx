@@ -1,15 +1,15 @@
-import React, { FC } from 'react'
+import React, { FC } from "react";
 
-interface MainSectionProps {
-  
-}
+import Calendar from "./Calendar";
 
-const MainSection: FC<MainSectionProps> = ({  }) => {
+interface MainSectionProps {}
+
+const MainSection: FC<MainSectionProps> = ({}) => {
   return (
-    <div className="md:col-start-2 md:col-span-3 bg-white">
-     MainSection
+    <div className="md:col-start-2 md:col-span-3">
+      <Calendar />
     </div>
-  )
-}
+  );
+};
 
 export default MainSection;
