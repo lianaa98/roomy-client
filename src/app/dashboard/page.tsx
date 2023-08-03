@@ -2,7 +2,6 @@
 
 import { FC, useState } from "react";
 
-import TopNav from "./components/TopNav";
 import SpaceMenu from "./components/SpaceMenu";
 import MainSection from "./components/MainSection";
 
@@ -15,7 +14,6 @@ const dashboard: FC<dashboardProps> = () => {
 
   return (
     <>
-    <TopNav />
     <SpaceMenu 
     spaceData={spaceData}
     space={space}
