@@ -3,9 +3,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHouse } from '@fortawesome/free-solid-svg-icons'
 
 interface SpaceMenuProps {
-  spaceData: any;
+  spaceData: object[];
   space: number;
-  setSpace: any;
+  setSpace: Function;
 }
 
 const SpaceMenu: FC<SpaceMenuProps> = ({ spaceData, space, setSpace }) => {
@@ -15,10 +15,10 @@ const SpaceMenu: FC<SpaceMenuProps> = ({ spaceData, space, setSpace }) => {
         <li key={index}>
           <a
             href="#"
-            className="flex items-center p-5 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+            className="flex items-center p-5 text-gray-400 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
             onClick={() => setSpace(index)}
           >
-            <span className="mx-auto px-5 text-lg">{space.name}</span>
+            <span className="mx-auto px-5 text-lg">{space.space.name}</span>
           </a>
         </li>
       );
@@ -35,7 +35,7 @@ const SpaceMenu: FC<SpaceMenuProps> = ({ spaceData, space, setSpace }) => {
         <div className="flex items-center justify-start p-5 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg">
           <a href="/dashboard" className="flex ml-2 md:mr-24">
           <FontAwesomeIcon icon={faHouse} className="w-30 h-30 p-3"/>
-            <span className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">
+            <span className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap text-gray-400">
               Roomy
             </span>
           </a>
@@ -45,7 +45,7 @@ const SpaceMenu: FC<SpaceMenuProps> = ({ spaceData, space, setSpace }) => {
           <li>
             <a
               href="#"
-              className="flex items-center p-5 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+              className="flex items-center p-5 text-gray-400 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
             >
               <svg
                 className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"

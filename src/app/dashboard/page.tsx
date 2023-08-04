@@ -1,16 +1,27 @@
 "use client";
 
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
+import { fetchData } from "@/lib/fetchData";
+import { useCookies } from "react-cookie";
 
 import SpaceMenu from "./components/SpaceMenu";
 import MainSection from "./components/MainSection";
 
-import { spaceData } from "../mock/mockData";
-
 interface dashboardProps {}
 
 const dashboard: FC<dashboardProps> = () => {
+  const [spaceData, setSpaceData] = useState([]);
   const [space, setSpace] = useState(0);
+  const [cookies, setCookie, removeCookie] = useCookies(["user-token"]);
+
+  useEffect(() => {
+    console.log("space", space);
+    const token = cookies["user-token"];
+    fetchData("/spaces", "GET", token).then((res) => {
+      console.log(res)
+      setSpaceData(res);
+    });
+  }, [space]);
 
   return (
     <>
