@@ -1,6 +1,8 @@
 import React, { FC } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHouse } from '@fortawesome/free-solid-svg-icons'
+import { useCookies } from "react-cookie";
+
 
 interface SpaceMenuProps {
   spaceData: object[];
@@ -9,6 +11,9 @@ interface SpaceMenuProps {
 }
 
 const SpaceMenu: FC<SpaceMenuProps> = ({ spaceData, space, setSpace }) => {
+
+  const [cookies, setCookie, removeCookie] = useCookies(["user-token"]);
+
   const renderSpace = () => {
     return spaceData.map((space: any, index: number) => {
       return (
@@ -23,6 +28,11 @@ const SpaceMenu: FC<SpaceMenuProps> = ({ spaceData, space, setSpace }) => {
         </li>
       );
     });
+  };
+
+  const logout = () => {
+    removeCookie("user-token");
+    window.location.href = "/";
   };
 
   return (
@@ -43,9 +53,9 @@ const SpaceMenu: FC<SpaceMenuProps> = ({ spaceData, space, setSpace }) => {
         <ul className="space-y-2 font-medium">
           {renderSpace()}
           <li>
-            <a
-              href="#"
-              className="flex items-center p-5 text-gray-400 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+            <div
+              className="flex items-center p-5 text-gray-400 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group hover:cursor-pointer"
+              onClick={logout}
             >
               <svg
                 className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
@@ -63,7 +73,7 @@ const SpaceMenu: FC<SpaceMenuProps> = ({ spaceData, space, setSpace }) => {
                 />
               </svg>
               <span className="px-5 text-lg">Sign Out</span>
-            </a>
+            </div>
           </li>
         </ul>
       </div>
