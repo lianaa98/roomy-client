@@ -1,17 +1,17 @@
-import React, { FC } from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHouse } from '@fortawesome/free-solid-svg-icons'
+import React, { FC, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHouse } from "@fortawesome/free-solid-svg-icons";
 import { useCookies } from "react-cookie";
-
+import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
 
 interface SpaceMenuProps {
   spaceData: object[];
   space: number;
   setSpace: Function;
+  setOpenModal: Function;
 }
 
-const SpaceMenu: FC<SpaceMenuProps> = ({ spaceData, space, setSpace }) => {
-
+const SpaceMenu: FC<SpaceMenuProps> = ({ spaceData, space, setSpace, setOpenModal }) => {
   const [cookies, setCookie, removeCookie] = useCookies(["user-token"]);
 
   const renderSpace = () => {
@@ -35,6 +35,11 @@ const SpaceMenu: FC<SpaceMenuProps> = ({ spaceData, space, setSpace }) => {
     window.location.href = "/";
   };
 
+  const openModalHandler = () => {
+    setOpenModal(true);
+  };
+
+
   return (
     <aside
       id="logo-sidebar"
@@ -42,9 +47,9 @@ const SpaceMenu: FC<SpaceMenuProps> = ({ spaceData, space, setSpace }) => {
       aria-label="Sidebar"
     >
       <div className="h-full px-3 pb-4 overflow-y-auto">
-        <div className="flex items-center justify-start p-5 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg">
+        <div className="flex items-center justify-start p-5 dark:hover:bg-gray-700 rounded-lg">
           <a href="/dashboard" className="flex ml-2 md:mr-24">
-          <FontAwesomeIcon icon={faHouse} className="w-30 h-30 p-3"/>
+            <FontAwesomeIcon icon={faHouse} className="w-30 h-30 p-3" />
             <span className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap text-gray-400">
               Roomy
             </span>
@@ -52,6 +57,13 @@ const SpaceMenu: FC<SpaceMenuProps> = ({ spaceData, space, setSpace }) => {
         </div>
         <ul className="space-y-2 font-medium">
           {renderSpace()}
+          <li>
+            <div className="flex items-center p-5 text-gray-400 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group hover:cursor-pointer"
+            onClick={openModalHandler}>
+              <AddCircleOutlineOutlinedIcon />
+              <span className="px-4 text-lg">New Space</span>
+            </div>
+          </li>
           <li>
             <div
               className="flex items-center p-5 text-gray-400 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group hover:cursor-pointer"
@@ -66,9 +78,9 @@ const SpaceMenu: FC<SpaceMenuProps> = ({ spaceData, space, setSpace }) => {
               >
                 <path
                   stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   d="M1 8h11m0 0L8 4m4 4-4 4m4-11h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-3"
                 />
               </svg>

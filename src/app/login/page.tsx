@@ -18,19 +18,12 @@ const login: FC<loginProps> = ({}) => {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target;
     setInput((prevState) => ({ ...prevState, [id]: value }));
-
-    console.log(input);
   };
 
   async function handleLoginButton(username: string, password: string) {
-    console.log("Clicked login");
-    console.log(username, password);
 
-    // clear cookie
     removeCookie("user-token", { path: "/" });
     const res = await loggingIn(username, password);
-
-    console.log(res);
 
     if (res) {
       setCookie("user-token", res, { path: "/" });

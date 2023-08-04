@@ -5,6 +5,7 @@ import { fetchData } from "@/lib/fetchData";
 import { useCookies } from "react-cookie";
 
 import SpaceMenu from "./components/SpaceMenu";
+import SpaceModal from "./components/SpaceModal";
 import MainSection from "./components/MainSection";
 
 interface dashboardProps {}
@@ -13,6 +14,7 @@ const dashboard: FC<dashboardProps> = () => {
   const [spaceData, setSpaceData] = useState([]);
   const [space, setSpace] = useState(0);
   const [cookies, setCookie, removeCookie] = useCookies(["user-token"]);
+  const [openModal, setOpenModal] = useState(false);
 
   useEffect(() => {
     console.log("space", space);
@@ -28,10 +30,14 @@ const dashboard: FC<dashboardProps> = () => {
     <SpaceMenu 
     spaceData={spaceData}
     space={space}
-    setSpace={setSpace}/>
+    setSpace={setSpace}
+    setOpenModal={setOpenModal}
+    />
     <MainSection />
+    {openModal && <SpaceModal 
+    setOpenModal={setOpenModal}
+    />}
 
-      
     </>
   );
 };

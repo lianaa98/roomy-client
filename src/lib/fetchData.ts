@@ -13,13 +13,15 @@ export const fetchData = async (
     console.log("token: ", token);
     console.log("body: ", body);
 
+    console.log(JSON.stringify(body))
+
     const response = await fetch(`${NEXT_PUBLIC_BASE_URL}${url}`, {
       method: method,
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(body),
+      body: body ? JSON.stringify(body) : null,
     });
 
     console.log("response", response);
