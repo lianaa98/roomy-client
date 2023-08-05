@@ -20,14 +20,10 @@ export const verifyAuth = async (token: string) => {
 
 export const loggingIn = async (username: string, password: string) => {
   try {
-    console.log("logging in...", username, password);
-
     const bodyJson = JSON.stringify({
       username,
       password,
     });
-
-    console.log("Req body: ", bodyJson);
 
     const response = await fetch(`${NEXT_PUBLIC_BASE_URL}/login`, {
       method: "POST",
@@ -39,14 +35,7 @@ export const loggingIn = async (username: string, password: string) => {
 
     console.log("response", response);
 
-    if (!response.ok) {
-      throw new Error("Login Network Error");
-    }
-
-    const data = await response.text();
-    console.log("response body: ", data);
-
-    return data;
+    return response;
 
   } catch (error) {
     throw new Error(`Login Error: ${error}`);
