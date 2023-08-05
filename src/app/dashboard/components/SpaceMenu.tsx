@@ -3,15 +3,23 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHouse } from "@fortawesome/free-solid-svg-icons";
 import { useCookies } from "react-cookie";
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
+import Skeleton from "@mui/material/Skeleton";
 
 interface SpaceMenuProps {
   spaceData: object[];
   space: number;
   setSpace: Function;
   setOpenModal: Function;
+  spaceLoading: boolean;
 }
 
-const SpaceMenu: FC<SpaceMenuProps> = ({ spaceData, space, setSpace, setOpenModal }) => {
+const SpaceMenu: FC<SpaceMenuProps> = ({
+  spaceData,
+  space,
+  setSpace,
+  setOpenModal,
+  spaceLoading,
+}) => {
   const [cookies, setCookie, removeCookie] = useCookies(["user-token"]);
 
   const renderSpace = () => {
@@ -39,7 +47,6 @@ const SpaceMenu: FC<SpaceMenuProps> = ({ spaceData, space, setSpace, setOpenModa
     setOpenModal(true);
   };
 
-
   return (
     <aside
       id="logo-sidebar"
@@ -56,10 +63,30 @@ const SpaceMenu: FC<SpaceMenuProps> = ({ spaceData, space, setSpace, setOpenModa
           </a>
         </div>
         <ul className="space-y-2 font-medium">
+          {spaceLoading && (
+            <>
+              <Skeleton
+                sx={{ bgcolor: "grey.700", p: 4, borderRadius: 2 }}
+                variant="rectangular"
+              />
+              <Skeleton
+                sx={{ bgcolor: "grey.700", p: 4, borderRadius: 2 }}
+                variant="rectangular"
+                animation="wave"
+              />
+              <Skeleton
+                sx={{ bgcolor: "grey.800", p: 4, borderRadius: 2 }}
+                variant="rectangular"
+                animation={false}
+              />
+            </>
+          )}
           {renderSpace()}
           <li>
-            <div className="flex items-center p-5 text-gray-400 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group hover:cursor-pointer"
-            onClick={openModalHandler}>
+            <div
+              className="flex items-center p-5 text-gray-400 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group hover:cursor-pointer"
+              onClick={openModalHandler}
+            >
               <AddCircleOutlineOutlinedIcon />
               <span className="px-4 text-lg">New Space</span>
             </div>

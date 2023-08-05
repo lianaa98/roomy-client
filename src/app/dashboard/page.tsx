@@ -15,29 +15,30 @@ const dashboard: FC<dashboardProps> = () => {
   const [space, setSpace] = useState(0);
   const [cookies, setCookie, removeCookie] = useCookies(["user-token"]);
   const [openModal, setOpenModal] = useState(false);
+  const [spaceLoading, setSpaceLoading] = useState(false);
 
   useEffect(() => {
-    console.log("space", space);
+    setSpaceLoading(true);
     const token = cookies["user-token"];
     fetchData("/spaces", "GET", token).then((res) => {
-      console.log(res)
-      setSpaceData(res);
+      setTimeout(() => {
+        setSpaceData(res);
+        setSpaceLoading(false);
+      }, 3000);
     });
   }, [space]);
 
   return (
     <>
-    <SpaceMenu 
-    spaceData={spaceData}
-    space={space}
-    setSpace={setSpace}
-    setOpenModal={setOpenModal}
-    />
-    <MainSection />
-    {openModal && <SpaceModal 
-    setOpenModal={setOpenModal}
-    />}
-
+      <SpaceMenu
+        spaceData={spaceData}
+        space={space}
+        setSpace={setSpace}
+        setOpenModal={setOpenModal}
+        spaceLoading={spaceLoading}
+      />
+      <MainSection />
+      {openModal && <SpaceModal setOpenModal={setOpenModal} />}
     </>
   );
 };
