@@ -28,7 +28,7 @@ const SpaceMenu: FC<SpaceMenuProps> = ({
         <li key={index}>
           <a
             href="#"
-            className="flex items-center p-5 text-gray-400 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+            className="flex items-center p-5 text-gray-400 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group border-gray-600 border-2"
             onClick={() => setSpace(index)}
           >
             <span className="mx-auto px-5 text-lg">{space.name}</span>

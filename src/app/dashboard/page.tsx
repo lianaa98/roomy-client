@@ -24,7 +24,7 @@ const dashboard: FC<dashboardProps> = () => {
       setTimeout(() => {
         setSpaceData(res);
         setSpaceLoading(false);
-      }, 3000);
+      }, 1000);
     });
   }, [space]);
 
