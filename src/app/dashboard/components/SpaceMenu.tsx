@@ -7,20 +7,26 @@ import Skeleton from "@mui/material/Skeleton";
 
 interface SpaceMenuProps {
   spaceData: object[];
-  space: number;
-  setSpace: Function;
   setOpenModal: Function;
   spaceLoading: boolean;
+  setSpaceId: Function;
+  setEntered: Function;
 }
 
 const SpaceMenu: FC<SpaceMenuProps> = ({
   spaceData,
-  space,
-  setSpace,
   setOpenModal,
   spaceLoading,
+  setSpaceId,
+  setEntered,
 }) => {
+
   const [cookies, setCookie, removeCookie] = useCookies(["user-token"]);
+
+  const enterSpace = (id: number) => {
+    setSpaceId(id);
+    setEntered(true);
+  };
 
   const renderSpace = () => {
     return spaceData.map((space: any, index: number) => {
@@ -29,7 +35,7 @@ const SpaceMenu: FC<SpaceMenuProps> = ({
           <a
             href="#"
             className="flex items-center p-5 text-gray-400 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group border-gray-600 border-2"
-            onClick={() => setSpace(index)}
+            onClick={() => enterSpace(space.id)}
           >
             <span className="mx-auto px-5 text-lg">{space.name}</span>
           </a>

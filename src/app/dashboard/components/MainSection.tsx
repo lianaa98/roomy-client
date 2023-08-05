@@ -1,26 +1,35 @@
-"use client"
+"use client";
 
 import React, { FC, useState } from "react";
+import { Skeleton } from "@mui/material";
 
 import Calendar from "./Calendar";
 
-import "../style/mainSection.css"
+import "../style/mainSection.css";
 
-interface MainSectionProps {}
+interface MainSectionProps {
+  entered: boolean;
+  spaceId: number;
+}
 
-const MainSection: FC<MainSectionProps> = ({}) => {
-
-  const [showCalendar, setShowCalendar] = useState(true);
-  const [insideSpace, setInsideSpace] = useState(false);
-
-  const handleEnterSpace = () => {
-    setShowCalendar(false);
-    setInsideSpace(true);
-  };
-
+const MainSection: FC<MainSectionProps> = ({ entered, spaceId }) => {
   return (
     <div id="main-container">
-       { !insideSpace ? <button>Enter Space</button> : null }
+      {entered ? (
+        <span>{spaceId}</span>
+      ) : (
+        <>
+          <span>Under Construction...</span>
+          <Skeleton
+            sx={{ bgcolor: "grey.600" }}
+            className="rounded-lg"
+            variant="rectangular"
+            animation={false}
+            width={1000}
+            height={1000}
+          />
+        </>
+      )}
     </div>
   );
 };

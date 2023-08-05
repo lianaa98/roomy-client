@@ -11,11 +11,16 @@ import MainSection from "./components/MainSection";
 interface dashboardProps {}
 
 const dashboard: FC<dashboardProps> = () => {
-  const [spaceData, setSpaceData] = useState([]);
-  const [space, setSpace] = useState(0);
   const [cookies, setCookie, removeCookie] = useCookies(["user-token"]);
-  const [openModal, setOpenModal] = useState(false);
+  
+  // Space Menu States
   const [spaceLoading, setSpaceLoading] = useState(false);
+  const [spaceData, setSpaceData] = useState([]);
+  const [openModal, setOpenModal] = useState(false);
+  
+  // Enter Space States
+  const [entered, setEntered] = useState(false);
+  const [spaceId, setSpaceId] = useState(0);
 
   useEffect(() => {
     setSpaceLoading(true);
@@ -26,18 +31,21 @@ const dashboard: FC<dashboardProps> = () => {
         setSpaceLoading(false);
       }, 1000);
     });
-  }, [space]);
+  }, []);
 
   return (
     <>
       <SpaceMenu
         spaceData={spaceData}
-        space={space}
-        setSpace={setSpace}
         setOpenModal={setOpenModal}
         spaceLoading={spaceLoading}
+        setSpaceId={setSpaceId}
+        setEntered={setEntered}
       />
-      <MainSection />
+      <MainSection 
+      entered={entered}
+      spaceId={spaceId}
+      />
       {openModal && <SpaceModal setOpenModal={setOpenModal} />}
     </>
   );
