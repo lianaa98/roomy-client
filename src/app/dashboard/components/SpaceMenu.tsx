@@ -31,7 +31,7 @@ const SpaceMenu: FC<SpaceMenuProps> = ({
             className="flex items-center p-5 text-gray-400 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
             onClick={() => setSpace(index)}
           >
-            <span className="mx-auto px-5 text-lg">{space.space.name}</span>
+            <span className="mx-auto px-5 text-lg">{space.name}</span>
           </a>
         </li>
       );
