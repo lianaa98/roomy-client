@@ -3,7 +3,6 @@
 import React, { FC, useState } from "react";
 import { Skeleton } from "@mui/material";
 
-import Calendar from "./Calendar";
 import TopTabs from "./TopTabs";
 import { tabs } from "./constants/tabs";
 
@@ -15,6 +14,8 @@ interface MainSectionProps {
 }
 
 const MainSection: FC<MainSectionProps> = ({ entered, spaceId }) => {
+
+  // Top tabs navigation state
   const [currentNavigate, setCurrentNavigate] = useState(0);
 
   return (
@@ -37,7 +38,7 @@ const MainSection: FC<MainSectionProps> = ({ entered, spaceId }) => {
             variant="rectangular"
             animation={false}
             width={1000}
-            height={1000}
+            height={500}
           />
         </>
       )}

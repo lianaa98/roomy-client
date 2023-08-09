@@ -39,6 +39,7 @@ const dashboard: FC<dashboardProps> = () => {
         spaceData={spaceData}
         setOpenModal={setOpenModal}
         spaceLoading={spaceLoading}
+        spaceId={spaceId}
         setSpaceId={setSpaceId}
         setEntered={setEntered}
       />
