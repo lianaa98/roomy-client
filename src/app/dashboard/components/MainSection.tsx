@@ -4,6 +4,8 @@ import React, { FC, useState } from "react";
 import { Skeleton } from "@mui/material";
 
 import Calendar from "./Calendar";
+import TopTabs from "./TopTabs";
+import { tabs } from "./constants/tabs";
 
 import "../style/mainSection.css";
 
@@ -13,10 +15,19 @@ interface MainSectionProps {
 }
 
 const MainSection: FC<MainSectionProps> = ({ entered, spaceId }) => {
+  const [currentNavigate, setCurrentNavigate] = useState(0);
+
   return (
     <div id="main-container">
       {entered ? (
-        <span>{spaceId}</span>
+        <>
+          <TopTabs
+            currentNavigate={currentNavigate}
+            setCurrentNavigate={setCurrentNavigate}
+            tabs={tabs}
+          />
+          {tabs[currentNavigate].component}
+        </>
       ) : (
         <>
           <span>Under Construction...</span>

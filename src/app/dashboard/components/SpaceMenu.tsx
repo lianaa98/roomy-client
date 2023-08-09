@@ -55,7 +55,7 @@ const SpaceMenu: FC<SpaceMenuProps> = ({
   return (
     <aside
       id="logo-sidebar"
-      className="fixed top-0 left-0 z-40 w-64 h-screen pt-10 transition-transform -translate-x-full sm:translate-x-0 "
+      className="fixed top-0 left-0 z-40 w-64 h-screen pt-3 transition-transform -translate-x-full sm:translate-x-0 "
       aria-label="Sidebar"
     >
       <div className="h-full px-3 pb-4 overflow-y-auto">
