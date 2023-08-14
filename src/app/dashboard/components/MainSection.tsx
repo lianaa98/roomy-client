@@ -1,6 +1,6 @@
 "use client";
 
-import React, { FC, useState } from "react";
+import React, { FC, useState, Suspense } from "react";
 import { Skeleton } from "@mui/material";
 
 import TopTabs from "./TopTabs";
@@ -27,7 +27,9 @@ const MainSection: FC<MainSectionProps> = ({ entered, spaceId }) => {
             setCurrentNavigate={setCurrentNavigate}
             tabs={tabs}
           />
-          {tabs[currentNavigate].component}
+          <Suspense fallback={<div>Loading...</div>}>
+            {React.cloneElement(tabs[currentNavigate].component, { spaceId })}
+          </Suspense>
         </>
       ) : (
         <>

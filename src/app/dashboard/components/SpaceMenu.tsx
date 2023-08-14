@@ -35,7 +35,7 @@ const SpaceMenu: FC<SpaceMenuProps> = ({
         <li key={index}>
           <div
             className={`flex items-center p-5 text-gray-400 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group border-gray-600 border-2 hover:cursor-pointer
-            ${spaceId === space.id && "border-blue-500"}`}
+            ${spaceId === space.id && "border-blue-400"}`}
             onClick={() => enterSpace(space.id)}
           >
             <span className="mx-auto px-5 text-lg">{space.name}</span>
