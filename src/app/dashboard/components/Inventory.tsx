@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useState } from "react";
 import { fetchData } from "@/lib/fetchData";
-import { InventoryItem, InventoryColumn, InventoryRow } from "@/lib/types";
+import { InventoryItem, InventoryColumn, InventoryRow, LocationWithSpaceAndUsers } from "@/lib/types";
 import { useCookies } from "react-cookie";
 import { CircularProgress } from "@mui/material";
 import InventoryList from "./InventoryList";
@@ -13,7 +13,11 @@ interface InventoryProps {
 const Inventory: FC<InventoryProps> = ({ spaceId }) => {
   const [cookies, setCookie, removeCookie] = useCookies(["user-token"]);
   const [dataLoading, setDataLoading] = useState(false);
+
+  // Location modal states
   const [openLocationModal, setOpenLocationModal] = useState(false);
+  const [locationsLoading, setLocationsLoading] = useState(false);
+  const [locations, setLocations] = useState<LocationWithSpaceAndUsers[]>([]);
 
   // Inventory data states
   const [inventory, setInventory] = useState<InventoryItem[]>([]);
@@ -101,6 +105,19 @@ const Inventory: FC<InventoryProps> = ({ spaceId }) => {
   }, []);
 
   const handleOpenLocationModal = () => {
+    const token = cookies["user-token"];
+    setLocationsLoading(true);
+    fetchData(`/spaces/${spaceId}/locations`, "GET", token)
+      .then((data) => {
+        console.log(data);
+        setLocations(data);
+        setLocationsLoading(false);
+      })
+      .catch((error) => {
+        console.log(error);
+        setLocationsLoading(false);
+      });
+
     setOpenLocationModal(true);
   };
 
@@ -126,7 +143,9 @@ const Inventory: FC<InventoryProps> = ({ spaceId }) => {
     <>
       {dataLoading && <CircularProgress className="mt-4" />}
       {!dataLoading && renderInventoryList()}
-      {openLocationModal && <LocationModal setOpenLocationModal={setOpenLocationModal} />}
+      {openLocationModal && (
+        <LocationModal setOpenLocationModal={setOpenLocationModal} locationsLoading={locationsLoading} locations={locations} />
+      )}
     </>
   );
 };
