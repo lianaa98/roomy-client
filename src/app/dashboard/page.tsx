@@ -26,10 +26,10 @@ const dashboard: FC<dashboardProps> = () => {
     setSpaceLoading(true);
     const token = cookies["user-token"];
     fetchData("/spaces", "GET", token).then((res) => {
-      setTimeout(() => {
+      // setTimeout(() => {
         setSpaceData(res);
         setSpaceLoading(false);
-      }, 1000);
+      // }, 1000);
     });
   }, []);
 

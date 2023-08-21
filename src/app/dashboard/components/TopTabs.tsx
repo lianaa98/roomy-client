@@ -18,7 +18,7 @@ const TopTabs: FC<TopTabsProps> = ({
         <li key={index} className="mr-2">
           <div
             className={`text-md inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 hover:cursor-pointer ${
-              currentNavigate === index ? "border-b-2 border-blue-500 text-blue-600" : ""
+              currentNavigate === index ? "border-b-2 border-blue-600 text-blue-600" : ""
             }`}
             onClick={() => setCurrentNavigate(index)}
           >

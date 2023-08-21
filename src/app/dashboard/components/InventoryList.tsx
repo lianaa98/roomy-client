@@ -44,7 +44,6 @@ const InventoryList: FC<InventoryListProps> = ({
             },
           }}
           pageSizeOptions={[10]}
-          checkboxSelection
           disableRowSelectionOnClick
         />
       </Box>
