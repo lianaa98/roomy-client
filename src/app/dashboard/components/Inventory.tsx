@@ -4,6 +4,7 @@ import { InventoryItem, InventoryColumn, InventoryRow } from "@/lib/types";
 import { useCookies } from "react-cookie";
 import { CircularProgress } from "@mui/material";
 import InventoryList from "./InventoryList";
+import LocationModal from "./LocationModal";
 
 interface InventoryProps {
   spaceId: number;
@@ -12,6 +13,7 @@ interface InventoryProps {
 const Inventory: FC<InventoryProps> = ({ spaceId }) => {
   const [cookies, setCookie, removeCookie] = useCookies(["user-token"]);
   const [dataLoading, setDataLoading] = useState(false);
+  const [openLocationModal, setOpenLocationModal] = useState(false);
 
   // Inventory data states
   const [inventory, setInventory] = useState<InventoryItem[]>([]);
@@ -60,7 +62,7 @@ const Inventory: FC<InventoryProps> = ({ spaceId }) => {
           </button>
         );
       },
-    }
+    },
   ]);
   const [inventoryRows, setInventoryRows] = useState<InventoryRow[]>([]);
 
@@ -98,13 +100,25 @@ const Inventory: FC<InventoryProps> = ({ spaceId }) => {
       });
   }, []);
 
+  const handleOpenLocationModal = () => {
+    setOpenLocationModal(true);
+  };
+
   const renderInventoryList = () => {
     return (
-      <InventoryList
-        inventoryRows={inventoryRows}
-        inventoryColumns={inventoryColumns}
-        dataLoading={dataLoading}
-      />
+      <>
+        <button
+          className="h-10 p-3 m-3 bg-gray-600 rounded-md flex justify-center items-center border-2 border-slate-300 hover:bg-gray-700"
+          onClick={handleOpenLocationModal}
+        >
+          <span>View All Locations</span>
+        </button>
+        <InventoryList
+          inventoryRows={inventoryRows}
+          inventoryColumns={inventoryColumns}
+          dataLoading={dataLoading}
+        />
+      </>
     );
   };
 
@@ -112,6 +126,7 @@ const Inventory: FC<InventoryProps> = ({ spaceId }) => {
     <>
       {dataLoading && <CircularProgress className="mt-4" />}
       {!dataLoading && renderInventoryList()}
+      {openLocationModal && <LocationModal setOpenLocationModal={setOpenLocationModal} />}
     </>
   );
 };
