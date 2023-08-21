@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHouse } from "@fortawesome/free-solid-svg-icons";
 import { useCookies } from "react-cookie";
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
-import Skeleton from "@mui/material/Skeleton";
+import { CircularProgress } from "@mui/material";
 
 interface SpaceMenuProps {
   spaceData: object[];
@@ -70,24 +70,7 @@ const SpaceMenu: FC<SpaceMenuProps> = ({
           </a>
         </div>
         <ul className="space-y-2 font-medium">
-          {spaceLoading && (
-            <>
-              <Skeleton
-                sx={{ bgcolor: "grey.700", p: 4, borderRadius: 2 }}
-                variant="rectangular"
-              />
-              <Skeleton
-                sx={{ bgcolor: "grey.700", p: 4, borderRadius: 2 }}
-                variant="rectangular"
-                animation="wave"
-              />
-              <Skeleton
-                sx={{ bgcolor: "grey.800", p: 4, borderRadius: 2 }}
-                variant="rectangular"
-                animation={false}
-              />
-            </>
-          )}
+          {spaceLoading && <CircularProgress style={{"color": "gray"}} />}
           {renderSpace()}
           <li>
             <div

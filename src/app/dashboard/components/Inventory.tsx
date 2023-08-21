@@ -144,7 +144,7 @@ const Inventory: FC<InventoryProps> = ({ spaceId }) => {
       {dataLoading && <CircularProgress className="mt-4" />}
       {!dataLoading && renderInventoryList()}
       {openLocationModal && (
-        <LocationModal setOpenLocationModal={setOpenLocationModal} locationsLoading={locationsLoading} locations={locations} />
+        <LocationModal setOpenLocationModal={setOpenLocationModal} locationsLoading={locationsLoading} locations={locations} spaceId={spaceId} />
       )}
     </>
   );

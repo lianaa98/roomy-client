@@ -36,7 +36,7 @@ const SpaceModal: FC<SpaceModalProps> = ({ setOpenModal }) => {
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
-      <Box className="absolute top-1/4 left-1/4 bg-slate-700 rounded-md p-7">
+      <Box className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-slate-700 rounded-md p-7">
         <Typography
           id="modal-modal-title"
           variant="h5"
