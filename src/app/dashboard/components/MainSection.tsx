@@ -20,7 +20,6 @@ interface MainSectionProps {
 }
 
 const MainSection: FC<MainSectionProps> = ({ entered, spaceId }) => {
-
   // Top tabs navigation state
   const [currentNavigate, setCurrentNavigate] = useState(0);
 
@@ -70,14 +69,31 @@ const MainSection: FC<MainSectionProps> = ({ entered, spaceId }) => {
         </>
       ) : (
         <>
-          <span>Under Construction...</span>
+          <div className="my-5 mt-9">
+            <span>Under Construction...</span>
+          </div>
           <Skeleton
             sx={{ bgcolor: "grey.600" }}
-            className="rounded-lg"
+            className="rounded-lg mt-4"
+            variant="rectangular"
+            width={500}
+            height={200}
+          />
+          <Skeleton
+            sx={{ bgcolor: "grey.600" }}
+            className="rounded-lg mt-4"
+            variant="rectangular"
+            animation="wave"
+            width={500}
+            height={100}
+          />
+          <Skeleton
+            sx={{ bgcolor: "grey.600" }}
+            className="rounded-lg mt-4"
             variant="rectangular"
             animation={false}
-            width={1000}
-            height={500}
+            width={500}
+            height={50}
           />
         </>
       )}

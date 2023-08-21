@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHouse } from "@fortawesome/free-solid-svg-icons";
 import { useCookies } from "react-cookie";
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
-import Skeleton from "@mui/material/Skeleton";
+import { CircularProgress } from "@mui/material";
 
 interface SpaceMenuProps {
   spaceData: object[];
@@ -35,7 +35,7 @@ const SpaceMenu: FC<SpaceMenuProps> = ({
         <li key={index}>
           <div
             className={`flex items-center p-5 text-gray-400 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group border-gray-600 border-2 hover:cursor-pointer
-            ${spaceId === space.id && "border-blue-400"}`}
+            ${spaceId === space.id && "border-blue-600"}`}
             onClick={() => enterSpace(space.id)}
           >
             <span className="mx-auto px-5 text-lg">{space.name}</span>
@@ -70,24 +70,7 @@ const SpaceMenu: FC<SpaceMenuProps> = ({
           </a>
         </div>
         <ul className="space-y-2 font-medium">
-          {spaceLoading && (
-            <>
-              <Skeleton
-                sx={{ bgcolor: "grey.700", p: 4, borderRadius: 2 }}
-                variant="rectangular"
-              />
-              <Skeleton
-                sx={{ bgcolor: "grey.700", p: 4, borderRadius: 2 }}
-                variant="rectangular"
-                animation="wave"
-              />
-              <Skeleton
-                sx={{ bgcolor: "grey.800", p: 4, borderRadius: 2 }}
-                variant="rectangular"
-                animation={false}
-              />
-            </>
-          )}
+          {spaceLoading && <CircularProgress style={{"color": "gray"}} />}
           {renderSpace()}
           <li>
             <div
