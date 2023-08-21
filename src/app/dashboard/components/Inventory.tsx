@@ -16,19 +16,51 @@ const Inventory: FC<InventoryProps> = ({ spaceId }) => {
   // Inventory data states
   const [inventory, setInventory] = useState<InventoryItem[]>([]);
   const [inventoryColumns, setInventoryColumns] = useState<InventoryColumn[]>([
-    { field: "id", headerName: "ID", width: 200 },
+    { field: "id", headerName: "ID", width: 150 },
     {
       field: "location_id",
       headerName: "Location ID",
-      width: 200,
+      width: 150,
       type: "number",
     },
     { field: "location", headerName: "Location", width: 150 },
     { field: "name", headerName: "Name", width: 150 },
     { field: "brand", headerName: "Brand", width: 150 },
-    { field: "quantity", headerName: "Quantity", width: 100 },
+    { field: "quantity", headerName: "Qty", width: 100 },
     { field: "status", headerName: "Status", width: 100 },
     { field: "description", headerName: "Description", width: 200 },
+    {
+      field: "edit",
+      headerName: "",
+      width: 80,
+      sortable: false,
+      renderCell: (params) => {
+        return (
+          <button
+            className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            onClick={() => console.log(params.row)}
+          >
+            Edit
+          </button>
+        );
+      },
+    },
+    {
+      field: "delete",
+      headerName: "",
+      width: 80,
+      sortable: false,
+      renderCell: (params) => {
+        return (
+          <button
+            className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+            onClick={() => console.log(params.row)}
+          >
+            Delete
+          </button>
+        );
+      },
+    }
   ]);
   const [inventoryRows, setInventoryRows] = useState<InventoryRow[]>([]);
 

@@ -67,6 +67,8 @@ export interface InventoryColumn {
   headerName: string;
   width: number;
   type?: string;
+  sortable?: boolean;
+  renderCell?: (params: any) => JSX.Element;
 }
 
 export interface InventoryRow {
