@@ -137,13 +137,12 @@ const Inventory: FC<InventoryProps> = ({ spaceId }) => {
         console.log(data);
         setViewModalData(data);
         setViewModalLoading(false);
+        setOpenViewModal(true);
       })
       .catch((error) => {
         console.log(error);
         setViewModalLoading(false);
       });
-
-    setOpenViewModal(true);
   }
 
   const renderInventoryList = () => {

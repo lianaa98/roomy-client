@@ -9,8 +9,8 @@ export interface User {
   email: string;
   username: string;
   passwordHash: string;
-  created_at: string;
-  updated_at: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface UserWithSpaces extends User{
@@ -24,8 +24,8 @@ export interface UserWithSpaces extends User{
 export interface Space {
   id: number;
   name: string;
-  created_at: string;
-  updated_at: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface SpaceWithUsers extends Space {
@@ -39,8 +39,8 @@ export interface SpaceWithUsers extends Space {
 export interface LocationWithSpaceAndUsers {
   id: number;
   name: string;
-  created_at: string;
-  updated_at: string;
+  createdAt: string;
+  updatedAt: string;
   space: SpaceWithUsers;
 }
 
@@ -54,9 +54,9 @@ export interface InventoryItem {
   brand: string;
   description: string;
   quantity: number;
-  created_at: string;
-  updated_at: string;
-  purchased_at: string;
+  createdAt: string;
+  updatedAt: string;
+  purchasedAt: string;
   status: string;
   location: LocationWithSpaceAndUsers;
   user: UserWithSpaces;
@@ -89,9 +89,9 @@ export interface OwnedItem {
   brand: string;
   description: string;
   quantity: number;
-  created_at: string;
-  updated_at: string;
-  purchased_at: string;
+  createdAt: string;
+  updatedAt: string;
+  purchasedAt: string;
   status: string;
   location: LocationWithSpaceAndUsers;
   user: UserWithSpaces;

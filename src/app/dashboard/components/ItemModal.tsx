@@ -24,9 +24,9 @@ const ItemModal: FC<ItemModalProps> = ({
     brand,
     description,
     quantity,
-    created_at,
-    updated_at,
-    purchased_at,
+    createdAt,
+    updatedAt,
+    purchasedAt,
     status,
     location,
     user,
@@ -38,12 +38,14 @@ const ItemModal: FC<ItemModalProps> = ({
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
-      <Box className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-slate-700 rounded-md p-7">
+      <Box className="absolute top-1/4 left-1/4 -translate-x-1/4 -translate-y-1/4 w-3/4 bg-slate-700 rounded-md p-7">
         <div className="flex">
           <div className="flex flex-col mx-2">
             <span>Name: {name}</span>
             <span>Brand: {brand}</span>
             <span>Quantity: {quantity}</span>
+            <span>Located at: {location.name}</span>
+            <span>Purchased time: {purchasedAt}</span>
           </div>
           <div className="flex flex-col mx-2">
             <div className="bg-orange-300 rounded-sm text-center">
