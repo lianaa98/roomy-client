@@ -81,3 +81,18 @@ export interface InventoryRow {
   status: string;
   description: string;
 };
+
+// Fetched from back-end
+export interface OwnedItem {
+  id: number;
+  name: string;
+  brand: string;
+  description: string;
+  quantity: number;
+  created_at: string;
+  updated_at: string;
+  purchased_at: string;
+  status: string;
+  location: LocationWithSpaceAndUsers;
+  user: UserWithSpaces;
+}

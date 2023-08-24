@@ -5,6 +5,7 @@ import { useCookies } from "react-cookie";
 import { CircularProgress } from "@mui/material";
 import InventoryList from "./InventoryList";
 import LocationModal from "./LocationModal";
+import ItemModal from "./ItemModal";
 
 interface InventoryProps {
   spaceId: number;
@@ -18,6 +19,13 @@ const Inventory: FC<InventoryProps> = ({ spaceId }) => {
   const [openLocationModal, setOpenLocationModal] = useState(false);
   const [locationsLoading, setLocationsLoading] = useState(false);
   const [locations, setLocations] = useState<LocationWithSpaceAndUsers[]>([]);
+
+  // View item modal states
+  const [openViewModal, setOpenViewModal] = useState(false);
+  const [viewModalLoading, setViewModalLoading] = useState(false);
+  const [viewModalData, setViewModalData] = useState<InventoryItem | null>(
+    null
+  );
 
   // Inventory data states
   const [inventory, setInventory] = useState<InventoryItem[]>([]);
@@ -44,9 +52,9 @@ const Inventory: FC<InventoryProps> = ({ spaceId }) => {
         return (
           <button
             className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-            onClick={() => console.log(params.row)}
+            onClick={() => handleOpenViewModal(params.row.id)}
           >
-            Edit
+            View
           </button>
         );
       },
@@ -121,6 +129,23 @@ const Inventory: FC<InventoryProps> = ({ spaceId }) => {
     setOpenLocationModal(true);
   };
 
+  const handleOpenViewModal = (id: number) => {
+    const token = cookies["user-token"];
+    setViewModalLoading(true);
+    fetchData(`/owned_items/${id}`, "GET", token)
+      .then((data) => {
+        console.log(data);
+        setViewModalData(data);
+        setViewModalLoading(false);
+      })
+      .catch((error) => {
+        console.log(error);
+        setViewModalLoading(false);
+      });
+
+    setOpenViewModal(true);
+  }
+
   const renderInventoryList = () => {
     return (
       <>
@@ -145,6 +170,9 @@ const Inventory: FC<InventoryProps> = ({ spaceId }) => {
       {!dataLoading && renderInventoryList()}
       {openLocationModal && (
         <LocationModal setOpenLocationModal={setOpenLocationModal} locationsLoading={locationsLoading} locations={locations} spaceId={spaceId} />
+      )}
+      {openViewModal && (
+        <ItemModal setOpenViewModal={setOpenViewModal} viewModalLoading={viewModalLoading} viewModalData={viewModalData} />
       )}
     </>
   );
